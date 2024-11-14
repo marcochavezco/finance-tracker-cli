@@ -1,5 +1,6 @@
 import pandas as pd
 import csv
+from data_entry import get_date, get_amount, get_category, get_description
 
 class CSV:
     CSV_FILE = 'finance_data.csv'
@@ -27,5 +28,12 @@ class CSV:
             writer.writerow(new_entry)
             print('Entry added!')
 
-CSV.initalize_csv()
-CSV.add_entry('12-11-24', 1000, 'income', 'Salary')
+def add():
+    CSV.initalize_csv()
+    date = get_date("Enter the transaction date (dd-mm-yyyy). Leave empty to use today's date: ", allow_default=True) 
+    amount = get_amount()
+    category = get_category()
+    description= get_description()
+    CSV.add_entry(date, amount, category, description)
+
+add()
